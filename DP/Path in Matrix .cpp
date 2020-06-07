@@ -36,3 +36,39 @@ int main() {
 	}
 	return 0;
 }
+\\ TOp-DOWN
+int main() {
+	int t;
+	cin>>t;
+	int n;
+	while(t--){
+	    cin>>n;
+	    vector<vector<int>>vec(n,vector<int>(n));
+	    vector<vector<int>>dp(n,vector<int>(n));
+	    for(int i = 0; i< n; i++){
+	        for(int j = 0; j < n; j++){
+	            cin>>vec[i][j];
+	        }
+	    }
+	    int ans = 0;
+	    for(int i = 0; i < n; i++){
+            dp[0][i] = vec[0][i];
+	    }
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(j == 0){
+                    dp[i][j] = vec[i][j] + max(dp[i-1][j],dp[i-1][j+1]);
+                }else if(j == n-1){
+                    dp[i][j] = vec[i][j] + max(dp[i-1][j-1],dp[i-1][j]);
+                }else{
+                    dp[i][j] = vec[i][j] + max(dp[i-1][j-1],max(dp[i-1][j],dp[i-1][j+1]));
+                }
+            }
+        }
+	   for(int i = 0; i < n; i++){
+	       ans = max(ans,dp[n-1][i]);
+	   }
+	   cout<<ans<<endl;
+	}
+	return 0;
+}
