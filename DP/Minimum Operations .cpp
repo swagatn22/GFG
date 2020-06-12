@@ -12,7 +12,7 @@ int solve(int n,vector<int>dp){
     if(n % 2 == 1){
         return dp[n] = 1+ solve(n-1,dp);
     }
-     return dp[n] = 1 + min(solve(n-1,dp),solve(n/2,dp));
+     return dp[n] = 1 + solve(n/2,dp);
     return dp[n];
 }
 //TOP-down
@@ -29,7 +29,7 @@ int main() {
             if(i % 2 == 1){
                 dp[i] = 1 + dp[i-1];
             }else{
-                dp[i] = 1 + min(dp[i-1],dp[i/2]);
+                dp[i] = 1 + dp[i/2];
             }
         }
 	    cout<<dp[n]<<endl;
