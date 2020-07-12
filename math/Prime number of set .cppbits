@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool prime[100001];
+void Sieve() 
+{ 
+    
+    memset(prime, true, sizeof(prime)); 
+    prime[0]=false;
+    prime[1]=false;
+    for (int i=2; i*i<=100000; i++) 
+    { 
+        if (prime[i] == true) 
+        { 
+            for (int j=i*i; j<=100000; j+=i) 
+                prime[j] = false; 
+        } 
+    } 
+}
+bool checkPrime(long long int num)
+{
+    return prime[num];
+}
+bool binary(long long int n)
+{
+    long long int dup=n,r,c;
+    c=0;
+    while(dup != 0)
+    {
+        r=dup%2;
+        if(r==1)
+          c++;
+        dup=dup/2;
+    }
+    return checkPrime(c);
+}
+int main()
+{
+    Sieve();
+    int t;
+    long long int l,r,count,i;
+    cin>>t;
+    while(t--)
+    {
+        cin>>l>>r;
+        count=0;
+        for(i = l;i<=r;i++)
+        {
+            if(binary(i))
+              count++;
+        }
+        cout<<count<<endl;
+    }
+    return 0;
+}
