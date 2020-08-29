@@ -19,3 +19,29 @@ int main() {
 	}
 	return 0;
 }
+
+#include <iostream>
+using namespace std;
+int solve(int num, int s, int e){
+    int count = 0;
+    while(count <= e){
+        if(count >= s && count <= e){
+            num = (num^(1<<count));
+        }
+        count++;
+    }
+    return num;
+}
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	int num,m,n;
+	while(t--){
+	    cin>>num;
+	    cin>>m>>n;
+	    cout<<solve(num,m-1,n-1)<<endl;
+	}
+	return 0;
+}
