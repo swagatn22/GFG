@@ -18,3 +18,9 @@ int main() {
 	}
 	return 0;
 }
+long long sum = 0;
+	    for(int i = 0; i <= 31; i++){
+	        int mul = ((n & 1<<i) == 0)? 0 : 1;
+	        sum += mul*(pow(2,31-i));
+	    }
+	    return sum;
